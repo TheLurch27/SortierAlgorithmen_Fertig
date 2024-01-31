@@ -1,4 +1,6 @@
-﻿namespace SortierAlgorithmen_Fertig
+﻿using System;
+
+namespace SortierAlgorithmen_Fertig
 {
     internal class Program
     {
@@ -13,7 +15,7 @@
                 Console.WriteLine("2. Zahlen manuell eingeben");
                 Console.Write("Wähle eine Option: ");
 
-                if (!int.TryParse(Console.ReadLine(), out choice))
+                if (!int.TryParse(Console.ReadLine(), out choice) || (choice != 1 && choice != 2))
                 {
                     Console.WriteLine("Ungültige Eingabe. Bitte wähle 1 oder 2.");
                     continue;
@@ -35,18 +37,25 @@
                     numbers = InputNumbers();
                     break;
                 }
-                else
-                {
-                    Console.WriteLine("Ungültige Option. Bitte wähle 1 oder 2.");
-                }
             }
 
             Console.WriteLine("\nWähle einen Sortieralgorithmus:");
             Console.WriteLine("1. Bubblesort");
             Console.WriteLine("2. Selectionsort");
             Console.WriteLine("3. Quicksort");
-            Console.Write("Deine Wahl: ");
-            int sortChoice = int.Parse(Console.ReadLine());
+
+            int sortChoice;
+            while (true)
+            {
+                Console.Write("Deine Wahl: ");
+                string input = Console.ReadLine();
+                if (!int.TryParse(input, out sortChoice) || sortChoice < 1 || sortChoice > 3)
+                {
+                    Console.WriteLine("Ungültige Wahl für den Sortieralgorithmus.");
+                    continue;
+                }
+                break;
+            }
 
             int[] sortedNumbers;
             switch (sortChoice)
@@ -61,7 +70,7 @@
                     sortedNumbers = Quicksort.Sort(numbers);
                     break;
                 case 4:
-                    sortedNumbers = DerVerboteneAlgorithmus.Sort(numbers);
+                    sortedNumbers = DerDessenNamenNichtGenanntWerdenDarf.Sort(numbers);
                     break;
                 default:
                     Console.WriteLine("Ungültige Wahl für den Sortieralgorithmus.");
@@ -72,8 +81,19 @@
             Console.WriteLine("1. Aufsteigend");
             Console.WriteLine("2. Absteigend");
             Console.WriteLine("3. Zickzack");
-            Console.Write("Deine Wahl: ");
-            int orderChoice = int.Parse(Console.ReadLine());
+
+            int orderChoice;
+            while (true)
+            {
+                Console.Write("Deine Wahl: ");
+                string input = Console.ReadLine();
+                if (!int.TryParse(input, out orderChoice) || orderChoice < 1 || orderChoice > 3)
+                {
+                    Console.WriteLine("Ungültige Wahl für die Sortierreihenfolge.");
+                    continue;
+                }
+                break;
+            }
 
             switch (orderChoice)
             {

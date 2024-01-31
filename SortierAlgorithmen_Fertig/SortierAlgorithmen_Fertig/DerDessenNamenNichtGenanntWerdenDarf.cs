@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SortierAlgorithmen_Fertig
 {
-    internal class DerVerboteneAlgorithmus
+    internal class DerDessenNamenNichtGenanntWerdenDarf
     {
         private static Random random = new Random();
 
